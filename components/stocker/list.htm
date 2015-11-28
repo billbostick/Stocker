@@ -1,0 +1,37 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Symbol</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Change</th>
+      <th>Change %</th>
+      <th>Day's High</th>
+      <th>Day's Low</th>
+      <th>Volume</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+{% for quote in __SELF__.quotes %}
+    <tr>
+      <input type="hidden" name="listSymbols[]" value="{{ quote.symbol }}" />
+      <td>{{ quote.symbol }}</td>
+      <td>{{ quote.issuer_name|raw }}</td>
+      <td>{{ quote.price|round(2)|number_format(2) }}</td>
+      <td style="color:{%if quote.change < 0 %} red{% else %} green{%endif %}">{{ quote.change|round(2)|number_format(2) }}</td>
+      <td style="color:{%if quote.change < 0 %} red{% else %} green{%endif %}">{{ quote.chg_percent|round(2)|number_format(2) }}%</td>
+      <td>{{ quote.day_high|round(2)|number_format(2) }}</td>
+      <td>{{ quote.day_low|round(2)|number_format(2) }}</td>
+      <td>{{ quote.volume|number_format(0,'.',',') }}</td>
+      <td>
+        <button 
+          type="button" 
+          class="close pull-right" 
+          aria-hidden="true"
+          onClick="$(this).closest('tr').remove()">&times;</button>
+      </td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>

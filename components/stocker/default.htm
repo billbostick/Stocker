@@ -1,0 +1,17 @@
+<form>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="input-group">
+        <input name="quoteSymbol" type="text" id="input-item" class="form-control" value="" placeholder="Enter a stock symbol">
+        <span class="input-group-btn">
+          <button type="submit" data-request="{{ __SELF__ }}::onAddItem"
+                  data-request-update="'{{ __SELF__ }}::list': '#result'"
+                  data-request-success="$('#input-item').val('')" name="add" value="add" class="btn btn btn-primary">Add</button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <ul class="list-group" id="result">
+  </ul>
+</form>
+
